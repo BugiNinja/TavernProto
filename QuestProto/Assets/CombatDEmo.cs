@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CombatDEmo : MonoBehaviour {
     public GameObject[] Heroes;
+    public Transform heroHolder;
     public GameObject[] Enemies;
     public HeroStats[] heroS;
     public HeroStats[] enemyS;
@@ -14,20 +15,28 @@ public class CombatDEmo : MonoBehaviour {
     public GameObject next;
     // Use this for initialization
     void Start () {
-        heroS = new HeroStats[Heroes.Length];
-        for (int i = 0; i < Heroes.Length; i++)
+        Heroes = new GameObject[4];
+        heroS = new HeroStats[4];
+        for (int i = 0; i < 4; i++)
         {
+            Heroes[i] = heroHolder.GetChild(i).gameObject;
             heroS[i] = Heroes[i].GetComponent<HeroStats>();
         }
-        enemyS = new HeroStats[Enemies.Length];
-        for (int i = 0; i < Enemies.Length; i++)
+        Enemies = new GameObject[4];
+        enemyS = new HeroStats[4];
+        for (int i = 0; i < 4; i++)
         {
+            Enemies[i] = transform.GetChild(i).gameObject;
             enemyS[i] = Enemies[i].GetComponent<HeroStats>();
         }
     }
 	
 	// Update is called once per frame
 	void Update () {
+        if (!heroHolder.gameObject.activeSelf)
+        {
+            heroHolder.gameObject.SetActive(true);
+        }
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;
@@ -149,7 +158,7 @@ public class CombatDEmo : MonoBehaviour {
             {
                 enemySelection.hp -= heroSelection.att;
                 Debug.Log(heroSelection.name + " dealed " + heroSelection.att + " DMG to " + enemySelection.name);
-                if (heroSelection.heroClass == HeroStats.HeroClass.warrior || heroSelection.heroClass == HeroStats.HeroClass.rogue && enemySelection.heroClass == HeroStats.HeroClass.rogue)
+                if (heroSelection.heroClass == HeroStats.HeroClass.warrior || heroSelection.heroClass == HeroStats.HeroClass.rogue && enemySelection.heroClass == HeroStats.HeroClass.rogue || heroSelection.heroClass == HeroStats.HeroClass.rogue && enemySelection.heroClass == HeroStats.HeroClass.mage)
                 {
                     heroSelection.hp -= enemySelection.att;
                     Debug.Log(enemySelection.name + " retaliated " + enemySelection.att + " DMG to " + heroSelection.name);
@@ -183,7 +192,7 @@ public class CombatDEmo : MonoBehaviour {
                         HeroStats targetHero = heroS[(int)(Random.Range(0, 3))];
                         targetHero.hp -= enemyS[i].att;
                         Debug.Log(enemyS[i].name + " dealed " + enemyS[i].att + " DMG to " + targetHero.name);
-                        if (enemyS[i].heroClass == HeroStats.HeroClass.warrior || enemyS[i].heroClass == HeroStats.HeroClass.rogue && targetHero.heroClass == HeroStats.HeroClass.rogue)
+                        if (enemyS[i].heroClass == HeroStats.HeroClass.warrior || enemyS[i].heroClass == HeroStats.HeroClass.rogue && targetHero.heroClass == HeroStats.HeroClass.rogue || enemyS[i].heroClass == HeroStats.HeroClass.rogue && targetHero.heroClass == HeroStats.HeroClass.mage)
                         {
                             enemyS[i].hp -= targetHero.att;
                             Debug.Log(targetHero.name + " retaliated " + targetHero.att + " DMG to " + enemyS[i].name);
@@ -224,19 +233,22 @@ public class CombatDEmo : MonoBehaviour {
             if (deadenemies == enemyS.Length)
             {
                 next.SetActive(true);
-                gameObject.SetActive(false);
+                
                 for (int j = 0; j < Enemies.Length; j++)
                 {
                     Enemies[j].SetActive(true);
                     enemyS[j].isActive = true;
                     enemyS[j].hp = enemyS[j].maxhp;
+                    enemyS[j].gameObject.GetComponent<enemyInit>().InitEnemy();
                 }
                 for (int j = 0; j < heroS.Length; j++)
                 {
                     heroS[j].isActive = true;
-                    heroS[i].transform.GetChild(4).gameObject.SetActive(false);
-                    heroS[i].transform.GetChild(5).gameObject.SetActive(false);
+                    heroS[j].transform.GetChild(4).gameObject.SetActive(false);
+                    heroS[j].transform.GetChild(5).gameObject.SetActive(false);
                 }
+                heroHolder.gameObject.SetActive(false);
+                gameObject.SetActive(false);
             }
         }
     }

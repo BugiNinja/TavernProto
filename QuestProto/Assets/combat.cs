@@ -47,26 +47,26 @@ public class combat : MonoBehaviour {
                 }
                 if(hit.transform.tag == "CombatEvent" && hs != null)
                 {
-                    if(hit.transform.parent.name == "CombatEvent2")
-                    {
-                        prop1 = 50 + hs.dex * 2 + hs.RanAtt * 2;
-                        hs1 = hs;
-                    }
-                    else if(hit.transform.parent.name == "CombatEvent1")
-                    {
-                        prop2 = 50 + hs.str * 2 + hs.PhyAtt * 2;
-                        hs2 = hs;
-                    }
-                    else if (hit.transform.parent.name == "CombatEvent3")
-                    {
-                        prop2 = 50 + hs.cha * 2 + hs.MagDef * 2;
-                        hs2 = hs;
-                    }
-                    else if (hit.transform.parent.name == "CombatEvent4")
-                    {
-                        prop1 = 50 + hs.dex * 2 + hs.RanDef * 2;
-                        hs1 = hs;
-                    }
+                    //if(hit.transform.parent.name == "CombatEvent2")
+                    //{
+                    //    prop1 = 50 + hs.dex * 2 + hs.RanAtt * 2;
+                    //    hs1 = hs;
+                    //}
+                    //else if(hit.transform.parent.name == "CombatEvent1")
+                    //{
+                    //    prop2 = 50 + hs.str * 2 + hs.PhyAtt * 2;
+                    //    hs2 = hs;
+                    //}
+                    //else if (hit.transform.parent.name == "CombatEvent3")
+                    //{
+                    //    prop2 = 50 + hs.cha * 2 + hs.MagDef * 2;
+                    //    hs2 = hs;
+                    //}
+                    //else if (hit.transform.parent.name == "CombatEvent4")
+                    //{
+                    //    prop1 = 50 + hs.dex * 2 + hs.RanDef * 2;
+                    //    hs1 = hs;
+                    //}
                     if(hs1 != null && hs2 != null)
                     {
                         ok.SetActive(true);

@@ -7,6 +7,7 @@ public class MenuInput : MonoBehaviour
     GameManager gm;
     public GameObject quest1;
     public GameObject quest2;
+    public GameObject inventory;
 
     void Start()
     {
@@ -31,6 +32,12 @@ public class MenuInput : MonoBehaviour
                 {
                     quest2.SetActive(true);
                     quest2.transform.GetChild(0).gameObject.SetActive(true);
+                    gameObject.SetActive(false);
+                }
+                if (hit.transform.name == "Inventory")
+                {
+                    inventory.SetActive(true);
+                    
                     gameObject.SetActive(false);
                 }
             }
