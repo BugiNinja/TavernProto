@@ -2,26 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CombatDEmo : MonoBehaviour {
-    public GameObject[] Heroes;
-    public Transform heroHolder;
+public class CombatEvent : MonoBehaviour
+{
+    Quest currentQuest;
+    GameObject[] Heroes;
+    Transform heroHolder;
     public GameObject[] Enemies;
-    public HeroStats[] heroS;
+    HeroStats[] heroS;
     public HeroStats[] enemyS;
 
     HeroStats heroSelection;
     HeroStats enemySelection;
-    
-    public GameObject next;
     // Use this for initialization
-    void Start () {
-        Heroes = new GameObject[4];
-        heroS = new HeroStats[4];
-        for (int i = 0; i < 4; i++)
-        {
-            Heroes[i] = heroHolder.GetChild(i).gameObject;
-            heroS[i] = Heroes[i].GetComponent<HeroStats>();
-        }
+    void Start()
+    {
+        Heroes = currentQuest.Heroes;
+        heroS = currentQuest.heroS;
+        heroHolder = currentQuest.heroHolder;
         Enemies = new GameObject[4];
         enemyS = new HeroStats[4];
         for (int i = 0; i < 4; i++)
@@ -30,12 +27,13 @@ public class CombatDEmo : MonoBehaviour {
             enemyS[i] = Enemies[i].GetComponent<HeroStats>();
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         if (!heroS[0].inQuest)
         {
-            for(int i = 0; i < 4; i++)
+            for (int i = 0; i < 4; i++)
             {
                 heroS[i].inQuest = true;
                 Heroes[i].transform.localPosition = heroS[i].CombatLocation;
@@ -171,7 +169,7 @@ public class CombatDEmo : MonoBehaviour {
                     heroSelection.hp -= enemySelection.att;
                     Debug.Log(enemySelection.name + " retaliated " + enemySelection.att + " DMG to " + heroSelection.name);
                 }
-                
+
                 heroSelection.isActive = false;
                 heroSelection.transform.GetChild(4).gameObject.SetActive(true);
                 heroSelection.transform.GetChild(5).gameObject.SetActive(false);
@@ -181,13 +179,13 @@ public class CombatDEmo : MonoBehaviour {
 
             }
             int heroActionsUsed = 0;
-            for(int i = 0; i < heroS.Length; i++)
+            for (int i = 0; i < heroS.Length; i++)
             {
                 if (!heroS[i].isActive)
                 {
                     heroActionsUsed++;
                 }
-                
+
             }
             CheckEnemyHealth();
             if (heroActionsUsed == heroS.Length)
@@ -234,14 +232,14 @@ public class CombatDEmo : MonoBehaviour {
                 deadenemies++;
                 enemyS[i].isActive = false;
                 Enemies[i].SetActive(false);
-                
+
 
             }
 
             if (deadenemies == enemyS.Length)
             {
-                next.SetActive(true);
                 
+
                 for (int j = 0; j < Enemies.Length; j++)
                 {
                     Enemies[j].SetActive(true);
@@ -257,8 +255,13 @@ public class CombatDEmo : MonoBehaviour {
                     heroS[j].transform.GetChild(5).gameObject.SetActive(false);
                     Heroes[j].transform.localPosition = heroS[j].MenuLocation;
                 }
-                gameObject.SetActive(false);
+                
             }
+            currentQuest.NextEvent();
         }
+    }
+    public void SetQuest(Quest q)
+    {
+        currentQuest = q;
     }
 }
