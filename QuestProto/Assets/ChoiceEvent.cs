@@ -26,19 +26,46 @@ public class ChoiceEvent : MonoBehaviour
 
     void Start()
     {
-        Heroes = currentQuest.Heroes;
-        GameObject Choice1 = GameObject.CreatePrimitive(PrimitiveType.Quad);
-        Choice1.transform.parent = transform;
-        Choice1.transform.localScale = new Vector3(5, 1.5f, 0);
-        Choice1.transform.localPosition = new Vector3(0, 2, 0);
+        
+        GameObject C1 = GameObject.CreatePrimitive(PrimitiveType.Quad);
+        C1.transform.parent = transform;
+        C1.transform.localScale = new Vector3(5, 1.5f, 0);
+        C1.transform.localPosition = new Vector3(0, 2, 0);
         GameObject demerit = new GameObject();
-        demerit.transform.parent = Choice1.transform;
+        demerit.transform.parent = C1.transform;
         demerit.AddComponent<MeshRenderer>();
         TextMesh demeritT = demerit.AddComponent<TextMesh>();
-        GameObject merit = new GameObject();
-        merit.transform.parent = Choice1.transform;
-        demerit.AddComponent<MeshRenderer>();
-        TextMesh meritT = demerit.AddComponent<TextMesh>();
+        demeritT.color = Color.black;
+        switch ((int)Choice1[0].RewardType)
+        {
+            case 0:
+                demeritT.text = Choice1[0].Amount+"g";
+                break;
+            case 1:
+                demeritT.text = "armor";
+                break;
+            case 2:
+                demeritT.text = "weapon";
+                break;
+            case 3:
+                demeritT.text = Choice1[0].Amount + "exp";
+                break;
+            case 4:
+                demeritT.text = Choice1[0].Amount + "hp";
+                break;
+            case 5:
+                demeritT.text = (EventManager.Events)Choice1[0].Amount + "";
+                break;
+            default:
+                break;
+        }
+        if (Choice1.Length > 1)
+        {
+            GameObject merit = new GameObject();
+            merit.transform.parent = C1.transform;
+            demerit.AddComponent<MeshRenderer>();
+            TextMesh meritT = demerit.AddComponent<TextMesh>();
+        }
 
     }
 
@@ -156,5 +183,6 @@ public class ChoiceEvent : MonoBehaviour
     public void SetQuest(Quest q)
     {
         currentQuest = q;
+        Heroes = currentQuest.Heroes;
     }
 }

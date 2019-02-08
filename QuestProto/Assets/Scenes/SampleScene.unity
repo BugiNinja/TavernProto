@@ -22463,8 +22463,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Choice1:
-  - RewardType: 4
-    Amount: -1
+  - RewardType: 5
+    Amount: 1
   - RewardType: 0
     Amount: 100
   Choice2: []
