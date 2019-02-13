@@ -9,7 +9,7 @@ public class Quest : MonoBehaviour
     int EventProgress = 0;
     public int Reward = 1000;
     public int Exp = 100;
-    currency c;
+    public currency c;
     public List<EventManager.Events> Events;
     public List<GameObject> eventGameObjects;
     TextMesh Tname;
@@ -50,11 +50,18 @@ public class Quest : MonoBehaviour
         }
         eventGameObjects[EventProgress].SetActive(true);
     }
+    public void AddEventToNext(EventManager.Events eventType)
+    {
+        Events.Insert(EventProgress++, eventType);
+    }
     void initQuest()
     {
         for(int i = 0; i < Events.Count; i++)
         {
-            eventGameObjects.Add(em.GetEvent(Events[i]));
+            GameObject ev = em.GetEvent(Events[i]);
+            eventGameObjects.Add(ev);
+            ev.GetComponent<Event>().SetQuest(this);
+
         }
     }
     void Result()

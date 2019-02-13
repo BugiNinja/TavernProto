@@ -2,13 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CombatEvent : MonoBehaviour
+public class CombatEvent : Event
 {
-    Quest currentQuest;
-    GameObject[] Heroes;
-    Transform heroHolder;
     public GameObject[] Enemies;
-    HeroStats[] heroS;
     public HeroStats[] enemyS;
 
     HeroStats heroSelection;
@@ -16,9 +12,7 @@ public class CombatEvent : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Heroes = currentQuest.Heroes;
-        heroS = currentQuest.heroS;
-        heroHolder = currentQuest.heroHolder;
+
         Enemies = new GameObject[4];
         enemyS = new HeroStats[4];
         for (int i = 0; i < 4; i++)
@@ -259,9 +253,5 @@ public class CombatEvent : MonoBehaviour
             }
             currentQuest.NextEvent();
         }
-    }
-    public void SetQuest(Quest q)
-    {
-        currentQuest = q;
     }
 }
