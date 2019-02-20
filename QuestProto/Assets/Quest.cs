@@ -22,6 +22,7 @@ public class Quest : MonoBehaviour
 
     private void Start()
     {
+        em = FindObjectOfType<EventManager>();
         c = FindObjectOfType<currency>();
         Tname = transform.GetChild(0).GetChild(0).GetComponent<TextMesh>();
         Tname.text = name;
@@ -54,7 +55,7 @@ public class Quest : MonoBehaviour
     {
         Events.Insert(EventProgress++, eventType);
     }
-    void initQuest()
+    public void InitQuest()
     {
         for(int i = 0; i < Events.Count; i++)
         {
@@ -63,6 +64,8 @@ public class Quest : MonoBehaviour
             ev.GetComponent<Event>().SetQuest(this);
 
         }
+        EventProgress = 0;
+        eventGameObjects[EventProgress].SetActive(true);
     }
     void Result()
     {

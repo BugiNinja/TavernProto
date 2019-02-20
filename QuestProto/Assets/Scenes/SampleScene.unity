@@ -1116,6 +1116,7 @@ GameObject:
   - component: {fileID: 84836045}
   - component: {fileID: 84836044}
   - component: {fileID: 84836043}
+  - component: {fileID: 84836046}
   m_Layer: 0
   m_Name: QuestInfo
   m_TagString: Untagged
@@ -1201,6 +1202,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 84836041}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &84836046
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84836041}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 6.1232336e-17}
+  m_Center: {x: 0.000000029802322, y: 0, z: 0}
 --- !u!1 &87310736
 GameObject:
   m_ObjectHideFlags: 0
@@ -21182,6 +21196,7 @@ GameObject:
   - component: {fileID: 1548950630}
   - component: {fileID: 1548950629}
   - component: {fileID: 1548950628}
+  - component: {fileID: 1548950631}
   m_Layer: 0
   m_Name: QuestInfo
   m_TagString: Untagged
@@ -21267,6 +21282,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548950626}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &1548950631
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548950626}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 6.1232336e-17}
+  m_Center: {x: 0.000000029802322, y: 0, z: 0}
 --- !u!1 &1556206284
 GameObject:
   m_ObjectHideFlags: 0

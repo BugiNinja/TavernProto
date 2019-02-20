@@ -8,7 +8,10 @@ public class QuestList : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        for(int i = 0; i < transform.childCount; i++)
+        {
+            quests.Add(transform.GetChild(i).GetComponent<Quest>());
+        }
     }
 
     // Update is called once per frame
@@ -20,14 +23,29 @@ public class QuestList : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
-                for(int i = 0; i < quests.Capacity; i++)
+                for(int i = 0; i < quests.Count; i++)
                 {
-                    if (hit.transform.name == "Quest"+i)
+                    if (hit.transform.parent.name == "Quest"+(i+1))
                     {
-
+                        HideQuestInfo();
+                        quests[i].InitQuest();
                     }
                 }
             }
+        }
+    }
+    void HideQuestInfo()
+    {
+        for(int i= 0; i < quests.Count; i++)
+        {
+            quests[i].transform.GetChild(0).gameObject.SetActive(false);
+        }
+    }
+    void ShowQuestInfo()
+    {
+        for (int i = 0; i < quests.Count; i++)
+        {
+            quests[i].transform.GetChild(0).gameObject.SetActive(true);
         }
     }
 }
