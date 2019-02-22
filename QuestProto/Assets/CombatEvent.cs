@@ -6,7 +6,7 @@ public class CombatEvent : Event
 {
     public GameObject[] Enemies;
     public HeroStats[] enemyS;
-
+    bool first = true;
     HeroStats heroSelection;
     HeroStats enemySelection;
     // Use this for initialization
@@ -25,13 +25,13 @@ public class CombatEvent : Event
     // Update is called once per frame
     void Update()
     {
-        if (!heroS[0].inQuest)
+        if (first)
         {
             for (int i = 0; i < 4; i++)
             {
-                heroS[i].inQuest = true;
                 Heroes[i].transform.localPosition = heroS[i].CombatLocation;
             }
+            first = false;
         }
         if (!heroHolder.gameObject.activeSelf)
         {
@@ -226,8 +226,6 @@ public class CombatEvent : Event
                 deadenemies++;
                 enemyS[i].isActive = false;
                 Enemies[i].SetActive(false);
-
-
             }
 
             if (deadenemies == enemyS.Length)
@@ -243,15 +241,15 @@ public class CombatEvent : Event
                 }
                 for (int j = 0; j < heroS.Length; j++)
                 {
-                    heroS[j].inQuest = false;
                     heroS[j].isActive = true;
                     heroS[j].transform.GetChild(4).gameObject.SetActive(false);
                     heroS[j].transform.GetChild(5).gameObject.SetActive(false);
                     Heroes[j].transform.localPosition = heroS[j].MenuLocation;
                 }
-                
+                first = true;
+                currentQuest.NextEvent();
             }
-            currentQuest.NextEvent();
+            
         }
     }
 }

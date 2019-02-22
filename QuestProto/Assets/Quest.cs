@@ -6,7 +6,7 @@ public class Quest : MonoBehaviour
 {
     EventManager em;
     public string Qname = "QuestName";
-    int EventProgress = 0;
+    public int EventProgress = 0;
     public int Reward = 1000;
     public int Exp = 100;
     public currency c;
@@ -45,15 +45,19 @@ public class Quest : MonoBehaviour
     {
         eventGameObjects[EventProgress].SetActive(false);
         EventProgress++;
-        if(EventProgress == eventGameObjects.Count)
+        if (EventProgress >= eventGameObjects.Count)
         {
             Result();
         }
-        eventGameObjects[EventProgress].SetActive(true);
+        else
+        {
+            eventGameObjects[EventProgress].SetActive(true);
+        }
     }
     public void AddEventToNext(EventManager.Events eventType)
     {
-        Events.Insert(EventProgress++, eventType);
+        GameObject ev = em.GetEvent(eventType);
+        eventGameObjects.Insert(EventProgress + 1, ev);
     }
     public void InitQuest()
     {
@@ -64,6 +68,10 @@ public class Quest : MonoBehaviour
             ev.GetComponent<Event>().SetQuest(this);
 
         }
+        for(int i = 0; i < heroS.Length; i++)
+        {
+            heroS[i].inQuest = true;
+        }
         EventProgress = 0;
         eventGameObjects[EventProgress].SetActive(true);
     }
@@ -73,7 +81,13 @@ public class Quest : MonoBehaviour
         for(int i = 0; i < heroS.Length; i++)
         {
             heroS[i].exp += Exp;
+            heroS[i].inQuest = false;
         }
+        GetComponentInParent<QuestList>().EndQuest();
+    }
+    void ResetQuest()
+    {
+        eventGameObjects = null;
     }
 
 }

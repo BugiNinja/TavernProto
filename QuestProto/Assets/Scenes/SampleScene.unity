@@ -901,6 +901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Qname: Quest2
+  EventProgress: 0
   Reward: 500
   Exp: 100
   c: {fileID: 0}
@@ -3153,7 +3154,6 @@ GameObject:
   - component: {fileID: 212042255}
   - component: {fileID: 212042258}
   - component: {fileID: 212042257}
-  - component: {fileID: 212042256}
   m_Layer: 0
   m_Name: Inventory
   m_TagString: Untagged
@@ -3175,18 +3175,6 @@ Transform:
   m_Father: {fileID: 582827733}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &212042256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 212042254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 248a20efcf791cd469112a5c1a667bdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!102 &212042257
 TextMesh:
   serializedVersion: 3
@@ -14162,7 +14150,6 @@ GameObject:
   - component: {fileID: 1052101013}
   - component: {fileID: 1052101016}
   - component: {fileID: 1052101015}
-  - component: {fileID: 1052101014}
   m_Layer: 0
   m_Name: QuestList
   m_TagString: Untagged
@@ -14184,18 +14171,6 @@ Transform:
   m_Father: {fileID: 1889676726}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1052101014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1052101012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 248a20efcf791cd469112a5c1a667bdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!102 &1052101015
 TextMesh:
   serializedVersion: 3
@@ -24340,6 +24315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Qname: QuestName
+  EventProgress: 0
   Reward: 1000
   Exp: 100
   c: {fileID: 0}
@@ -27974,6 +27950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quests: []
+  menu: {fileID: 1397938529}
 --- !u!1 &2039658311
 GameObject:
   m_ObjectHideFlags: 0
@@ -28948,7 +28925,6 @@ GameObject:
   - component: {fileID: 2117095429}
   - component: {fileID: 2117095432}
   - component: {fileID: 2117095431}
-  - component: {fileID: 2117095430}
   m_Layer: 0
   m_Name: CombatDemo
   m_TagString: Untagged
@@ -28970,18 +28946,6 @@ Transform:
   m_Father: {fileID: 760150695}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2117095430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2117095428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 248a20efcf791cd469112a5c1a667bdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!102 &2117095431
 TextMesh:
   serializedVersion: 3

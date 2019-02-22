@@ -9,7 +9,6 @@ public class ChoiceEvent : Event
     public int TextReferenceId = 001;
     TextManager tm;
     TextMesh DescText;
-    GameObject[] Heroes;
     public enum Stats {strength, dexterity, inteligence, charisma , none}
     
     public enum Reward {money, armor, weapon, exp, hp, extraEvent}
@@ -126,7 +125,7 @@ public class ChoiceEvent : Event
                     }
                     currentQuest.NextEvent();
                 }
-                if (hit.transform.name == "Choice2")
+                else if (hit.transform.name == "Choice2")
                 {
                     if (TestStat(testedStat2))
                     {

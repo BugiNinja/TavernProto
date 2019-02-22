@@ -5,6 +5,7 @@ using UnityEngine;
 public class QuestList : MonoBehaviour
 {
     public List<Quest> quests;
+    public GameObject menu;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +34,12 @@ public class QuestList : MonoBehaviour
                 }
             }
         }
+    }
+    public void EndQuest()
+    {
+        ShowQuestInfo();
+        menu.SetActive(true);
+        gameObject.SetActive(false);
     }
     void HideQuestInfo()
     {
