@@ -247,7 +247,7 @@ public class CombatEvent : Event
                     Heroes[j].transform.localPosition = heroS[j].MenuLocation;
                 }
                 first = true;
-                currentQuest.NextEvent();
+                currentQuest.EventEnd();
             }
             
         }

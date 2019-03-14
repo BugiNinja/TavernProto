@@ -5,10 +5,12 @@ using UnityEngine;
 public class Quest : MonoBehaviour
 {
     EventManager em;
+    QuestTimer qt;
     public string Qname = "QuestName";
     public int EventProgress = 0;
     public int Reward = 1000;
     public int Exp = 100;
+    public int duration = 30;
     public currency c;
     public List<EventManager.Events> Events;
     public List<GameObject> eventGameObjects;
@@ -19,9 +21,12 @@ public class Quest : MonoBehaviour
     public Transform heroHolder;
     public GameObject[] Heroes;
     public HeroStats[] heroS;
+    bool extraEvent;
+    bool waitForEvent;
 
     private void Start()
     {
+        qt = FindObjectOfType<QuestTimer>();
         em = FindObjectOfType<EventManager>();
         c = FindObjectOfType<currency>();
         Tname = transform.GetChild(0).GetChild(0).GetComponent<TextMesh>();
@@ -31,6 +36,7 @@ public class Quest : MonoBehaviour
         Texp = transform.GetChild(0).GetChild(2).GetComponent<TextMesh>();
         Texp.text = Exp.ToString()+"exp";
         TDuration = transform.GetChild(0).GetChild(3).GetComponent<TextMesh>();
+        TDuration.text = duration / 60 + ":" + duration;
         heroHolder = FindObjectOfType<HeroSelection>().transform;
         Heroes = new GameObject[4];
         heroS = new HeroStats[4];
@@ -41,23 +47,39 @@ public class Quest : MonoBehaviour
         }
 
     }
-    public void NextEvent()
+    public void EventEnd()
     {
         eventGameObjects[EventProgress].SetActive(false);
         EventProgress++;
+        
+        if(qt.NextEventTime(EventProgress))
+        {
+            NextEvent();
+        }
+        else if (extraEvent)
+        {
+            extraEvent = false;
+            NextEvent();
+        }
+        else
+        {
+            waitForEvent = true;
+        }
+    }
+    public void NextEvent()
+    {
         if (EventProgress >= eventGameObjects.Count)
         {
             Result();
         }
-        else
-        {
-            eventGameObjects[EventProgress].SetActive(true);
-        }
+        eventGameObjects[EventProgress].SetActive(true);
+        waitForEvent = false;
     }
     public void AddEventToNext(EventManager.Events eventType)
     {
         GameObject ev = em.GetEvent(eventType);
         eventGameObjects.Insert(EventProgress + 1, ev);
+        extraEvent = true;
     }
     public void InitQuest()
     {
@@ -74,20 +96,26 @@ public class Quest : MonoBehaviour
         }
         EventProgress = 0;
         eventGameObjects[EventProgress].SetActive(true);
+        qt.SetQuestTimer(duration, eventGameObjects.Count, this);
     }
     void Result()
     {
+        qt.NullQuestTimer();
         c.coins += Reward;
         for(int i = 0; i < heroS.Length; i++)
         {
             heroS[i].exp += Exp;
             heroS[i].inQuest = false;
         }
+        eventGameObjects.Clear();
         GetComponentInParent<QuestList>().EndQuest();
     }
     void ResetQuest()
     {
         eventGameObjects = null;
     }
-
+    public bool WaitForEvent()
+    {
+        return waitForEvent;
+    }
 }

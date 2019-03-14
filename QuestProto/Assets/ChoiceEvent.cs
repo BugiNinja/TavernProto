@@ -123,7 +123,7 @@ public class ChoiceEvent : Event
                         if (Choice1.Length > 1)
                             GetReward(Choice1[1].RewardType, Choice1[1].Amount);
                     }
-                    currentQuest.NextEvent();
+                    currentQuest.EventEnd();
                 }
                 else if (hit.transform.name == "Choice2")
                 {
@@ -145,7 +145,7 @@ public class ChoiceEvent : Event
                         if (Choice1.Length > 1)
                             GetReward(Choice2[1].RewardType, Choice2[1].Amount);
                     }
-                    currentQuest.NextEvent();
+                    currentQuest.EventEnd();
                 }
             }
         }
