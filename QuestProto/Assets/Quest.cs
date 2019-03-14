@@ -64,6 +64,7 @@ public class Quest : MonoBehaviour
         else
         {
             waitForEvent = true;
+            qt.mi.gameObject.SetActive(true);
         }
     }
     public void NextEvent()
@@ -72,7 +73,10 @@ public class Quest : MonoBehaviour
         {
             Result();
         }
-        eventGameObjects[EventProgress].SetActive(true);
+        else
+        {
+            eventGameObjects[EventProgress].SetActive(true);
+        }
         waitForEvent = false;
     }
     public void AddEventToNext(EventManager.Events eventType)
@@ -95,8 +99,10 @@ public class Quest : MonoBehaviour
             heroS[i].inQuest = true;
         }
         EventProgress = 0;
-        eventGameObjects[EventProgress].SetActive(true);
         qt.SetQuestTimer(duration, eventGameObjects.Count, this);
+        qt.NextEventTime(EventProgress);
+        waitForEvent = true;
+        qt.mi.gameObject.SetActive(true);
     }
     void Result()
     {

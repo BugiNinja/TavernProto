@@ -8,10 +8,11 @@ public class MenuInput : MonoBehaviour
     public GameObject QuestList;
     public GameObject CombatDemo;
     public GameObject inventory;
+    QuestTimer qt;
 
     void Start()
     {
-
+        qt = FindObjectOfType<QuestTimer>();
     }
 
     void Update()
@@ -22,12 +23,12 @@ public class MenuInput : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.name == "QuestList")
+                if (hit.transform.name == "QuestList"&&qt.q == null)
                 {
                     QuestList.SetActive(true);
                     gameObject.SetActive(false);
                 }
-                if (hit.transform.name == "CombatDemo")
+                if (hit.transform.name == "CombatDemo"&&qt.q == null)
                 {
                     CombatDemo.SetActive(true);
                     gameObject.SetActive(false);
@@ -37,6 +38,12 @@ public class MenuInput : MonoBehaviour
                     inventory.SetActive(true);
                     
                     gameObject.SetActive(false);
+                }
+                if (hit.transform.name == "EventButton")
+                {
+                    gameObject.SetActive(false);
+                    hit.transform.gameObject.SetActive(false);
+                    qt.q.NextEvent();
                 }
             }
         }

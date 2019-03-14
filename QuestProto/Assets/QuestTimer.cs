@@ -8,12 +8,16 @@ public class QuestTimer : MonoBehaviour
     float NextEvent;
     float QuestLength;
     int EventCount;
-    Quest q;
+    public GameObject EventButton;
+    public Quest q;
     public TextMesh PartyInfo;
+    public TextMesh EventInfo;
+    public MenuInput mi;
     // Start is called before the first frame update
     void Start()
     {
-        
+        EventButton.SetActive(false);
+        mi = FindObjectOfType<MenuInput>();
     }
 
     // Update is called once per frame
@@ -26,9 +30,18 @@ public class QuestTimer : MonoBehaviour
                 QuestTime += Time.deltaTime;
                 PartyInfo.text = "In Quest " + (int)QuestTime / 60 + "." + (int)QuestTime + "/" + (int)QuestLength / 60 + "." + (int)QuestLength;
             }
-            if (QuestTime > NextEvent && q.WaitForEvent())
+            if (QuestTime > NextEvent && q.WaitForEvent()&& mi.isActiveAndEnabled)
             {
-                q.NextEvent();
+                
+                EventButton.SetActive(true);
+                if(QuestLength <= QuestTime)
+                {
+                    EventInfo.text = "Quest Complete";
+                }
+                else
+                {
+                    EventInfo.text = "New Event";
+                }
             }
         }
         else
@@ -50,8 +63,8 @@ public class QuestTimer : MonoBehaviour
     }
     public bool NextEventTime(int nextevent)
     {
-        NextEvent = QuestLength / EventCount * nextevent-1;
-        if (QuestTime > NextEvent)
+        NextEvent = QuestLength / EventCount * (nextevent+1);
+        if (QuestTime > NextEvent || QuestLength <= QuestTime)
         {
             return true;
         }
