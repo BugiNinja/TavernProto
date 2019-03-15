@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HeroStats : MonoBehaviour {
+    public int id = 0;
     public int lv = 0;
     public int exp = 1;
     public int hp = 10;
@@ -27,12 +28,17 @@ public class HeroStats : MonoBehaviour {
     public Vector3 InventoryLocation = new Vector3(6, -3, 0);
     public Equipment[] equipments;
     public GameObject StatDisplay;
+    public bool updateDatabase;
+    DatabaseManager dm;
+    
     // Use this for initialization
     void Awake () {
         CombatLocation = transform.localPosition;
 	}
     private void Start()
     {
+        dm = FindObjectOfType<DatabaseManager>();
+        dm.GetHeroSave(this);
         if(transform.childCount > 6)
         {
             equipments = new Equipment[5];
@@ -46,6 +52,13 @@ public class HeroStats : MonoBehaviour {
     
     // Update is called once per frame
     void Update () {
+
+        if (updateDatabase)
+        {
+            dm.UpdateHeroSave(this);
+            updateDatabase = false;
+        }
+
         if (exp > Mathf.Pow(lv * 10, 2))
         {
             lv++;
@@ -87,7 +100,6 @@ public class HeroStats : MonoBehaviour {
             cha = b_cha;
             UpdateEquipStats();
             exp = exp - (int)Mathf.Pow((lv - 1) * 10, 2);
-           
         }
 	}
     public void UpdateEquipStats()
@@ -129,9 +141,18 @@ public class HeroStats : MonoBehaviour {
         }
         else if (heroClass == HeroClass.rogue)
         {
-            
             att = Mathf.FloorToInt(dex / 10);
         }
+    }
+    public int TotalEXP()
+    {
+        int TotalEXP;
+        TotalEXP = exp;
+        for(int i= 1; i <= lv; i++)
+        {
+            TotalEXP += (int)Mathf.Pow((i - 1) * 10, 2);
+        }
+        return TotalEXP;
     }
 
 }

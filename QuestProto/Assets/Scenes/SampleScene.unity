@@ -3519,6 +3519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39459b530722e34bb1872124c53b1b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 1
   lv: 0
   exp: 1
   hp: 5
@@ -3537,6 +3538,7 @@ MonoBehaviour:
   InventoryLocation: {x: -3, y: 6, z: 0}
   equipments: []
   StatDisplay: {fileID: 0}
+  updateDatabase: 0
 --- !u!4 &276763506
 Transform:
   m_ObjectHideFlags: 0
@@ -7037,6 +7039,49 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &517381994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 517381996}
+  - component: {fileID: 517381995}
+  m_Layer: 0
+  m_Name: DatabaseManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &517381995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517381994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06e6577ee0055c42ad08e4102958451, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &517381996
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 517381994}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.6517857, y: 1.7267916, z: 0.35510716}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &518716213
 GameObject:
   m_ObjectHideFlags: 0
@@ -7230,6 +7275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39459b530722e34bb1872124c53b1b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   lv: 1
   exp: 0
   hp: 3
@@ -7248,6 +7294,7 @@ MonoBehaviour:
   InventoryLocation: {x: 6, y: -3, z: 0}
   equipments: []
   StatDisplay: {fileID: 0}
+  updateDatabase: 0
 --- !u!1 &560897353
 GameObject:
   m_ObjectHideFlags: 0
@@ -8154,6 +8201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39459b530722e34bb1872124c53b1b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   lv: 1
   exp: 0
   hp: 1
@@ -8172,6 +8220,7 @@ MonoBehaviour:
   InventoryLocation: {x: 6, y: -3, z: 0}
   equipments: []
   StatDisplay: {fileID: 0}
+  updateDatabase: 0
 --- !u!1 &602508905
 GameObject:
   m_ObjectHideFlags: 0
@@ -9292,6 +9341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39459b530722e34bb1872124c53b1b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 3
   lv: 0
   exp: 1
   hp: 6
@@ -9310,6 +9360,7 @@ MonoBehaviour:
   InventoryLocation: {x: 3, y: 6, z: 0}
   equipments: []
   StatDisplay: {fileID: 0}
+  updateDatabase: 0
 --- !u!4 &689981719
 Transform:
   m_ObjectHideFlags: 0
@@ -9793,6 +9844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39459b530722e34bb1872124c53b1b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   lv: 1
   exp: 0
   hp: 4
@@ -9811,6 +9863,7 @@ MonoBehaviour:
   InventoryLocation: {x: 6, y: -3, z: 0}
   equipments: []
   StatDisplay: {fileID: 0}
+  updateDatabase: 0
 --- !u!4 &745065946
 Transform:
   m_ObjectHideFlags: 0
@@ -10068,6 +10121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39459b530722e34bb1872124c53b1b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 2
   lv: 0
   exp: 1
   hp: 10
@@ -10086,6 +10140,7 @@ MonoBehaviour:
   InventoryLocation: {x: 0, y: 6, z: 0}
   equipments: []
   StatDisplay: {fileID: 0}
+  updateDatabase: 0
 --- !u!4 &753908666
 Transform:
   m_ObjectHideFlags: 0
@@ -13247,6 +13302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39459b530722e34bb1872124c53b1b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   lv: 1
   exp: 0
   hp: 2
@@ -13265,6 +13321,7 @@ MonoBehaviour:
   InventoryLocation: {x: 6, y: -3, z: 0}
   equipments: []
   StatDisplay: {fileID: 0}
+  updateDatabase: 0
 --- !u!4 &959463340
 Transform:
   m_ObjectHideFlags: 0
@@ -17628,6 +17685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39459b530722e34bb1872124c53b1b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   lv: 1
   exp: 0
   hp: 1
@@ -17646,6 +17704,7 @@ MonoBehaviour:
   InventoryLocation: {x: 6, y: -3, z: 0}
   equipments: []
   StatDisplay: {fileID: 0}
+  updateDatabase: 0
 --- !u!4 &1228607039
 Transform:
   m_ObjectHideFlags: 0
@@ -18864,6 +18923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39459b530722e34bb1872124c53b1b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 4
   lv: 0
   exp: 1
   hp: 10
@@ -18882,6 +18942,7 @@ MonoBehaviour:
   InventoryLocation: {x: 6, y: 6, z: 0}
   equipments: []
   StatDisplay: {fileID: 0}
+  updateDatabase: 0
 --- !u!4 &1323678736
 Transform:
   m_ObjectHideFlags: 0
@@ -21563,6 +21624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39459b530722e34bb1872124c53b1b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   lv: 1
   exp: 0
   hp: 3
@@ -21581,6 +21643,7 @@ MonoBehaviour:
   InventoryLocation: {x: 6, y: -3, z: 0}
   equipments: []
   StatDisplay: {fileID: 0}
+  updateDatabase: 0
 --- !u!4 &1563583027
 Transform:
   m_ObjectHideFlags: 0
@@ -23382,6 +23445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39459b530722e34bb1872124c53b1b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   lv: 1
   exp: 0
   hp: 4
@@ -23400,6 +23464,7 @@ MonoBehaviour:
   InventoryLocation: {x: 6, y: -3, z: 0}
   equipments: []
   StatDisplay: {fileID: 0}
+  updateDatabase: 0
 --- !u!1 &1676691184
 GameObject:
   m_ObjectHideFlags: 0
@@ -29410,6 +29475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39459b530722e34bb1872124c53b1b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   lv: 1
   exp: 0
   hp: 2
@@ -29428,6 +29494,7 @@ MonoBehaviour:
   InventoryLocation: {x: 6, y: -3, z: 0}
   equipments: []
   StatDisplay: {fileID: 0}
+  updateDatabase: 0
 --- !u!1 &2124411883
 GameObject:
   m_ObjectHideFlags: 0

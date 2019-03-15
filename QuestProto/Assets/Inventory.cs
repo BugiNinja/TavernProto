@@ -24,6 +24,7 @@ public class Inventory : MonoBehaviour
             Heroes[i] = heroHolder.GetChild(i).gameObject;
             heroS[i] = Heroes[i].GetComponent<HeroStats>();
         }
+
     }
 
     // Update is called once per frame
